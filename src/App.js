@@ -113,18 +113,16 @@ function App() {
        onChangeMode={()=>{
         setMode('WELCOME');
        }}></Header>
-      <Grid container>
-        <Grid item size={2}>
+
           <Nav topics={topics} onChangeMode={(_id)=>{
             setMode('READ');
             setId(_id);
           }}>
           </Nav>
-        </Grid>
-        <Grid item size={10}>      
+      
           {content}
-        </Grid>  
-      </Grid>
+ 
+
     </Container>
   );
 }
