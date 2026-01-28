@@ -18,32 +18,40 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
+import { motion } from "framer-motion";
 
-function BasicSelect() {
-  const [age, setAge] = React.useState('');
+// framer-motion
+function Drag() {
+    return <motion.div drag style={box} />
+}
+const box = {
+    width: 100,
+    height: 100,
+    backgroundColor: "#dd00ee",
+    borderRadius: 10,
+}
+function Motions() {
+    return (
+      <Drag></Drag> 
+    )
+}
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
+//Material UI
+function Materials() {
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-  );
+    <div>
+      <Buttons></Buttons>
+      <br/><br/>
+      <Grid container>
+        <Grid item size={6}>
+          <CheckboxLabels></CheckboxLabels>
+        </Grid>
+        <Grid item size={6}>      
+          <BasicSelect></BasicSelect>
+        </Grid>  
+      </Grid>
+    </div>
+  )
 }
 
 function CheckboxLabels() {
@@ -87,6 +95,32 @@ function Buttons() {
   )
 }  
 
+function BasicSelect() {
+  const [age, setAge] = React.useState('');
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+  return (
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={age}
+          label="Age"
+          onChange={handleChange}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
+  );
+}
+
+// Main page
 function Header(props) {
  return(
   <header>
@@ -120,23 +154,16 @@ function Nav(props) {
  )
 }
 
-
 function Article(props) {
+  let content=null;
+  if (props.id===2) { content = <Materials></Materials>};
+  if (props.id===3) { content = <Motions></Motions>};
  return(
   <artical>
     <h2>{props.title}</h2>
     {props.body}
     <br/><br/>
-    <Buttons></Buttons>
-    <br/><br/>
-    <Grid container>
-      <Grid item size={6}>
-        <CheckboxLabels></CheckboxLabels>
-      </Grid>
-      <Grid item size={6}>      
-        <BasicSelect></BasicSelect>
-      </Grid>  
-    </Grid>
+    {content}
   </artical>
  )
 }
@@ -146,12 +173,13 @@ function App() {
   const [id,setId] = useState(null);
   const topics = [
     {id:1, title:"React", body:"React는 사용자 정의 tag를 만드는 기술이다."},
-    {id:2, title:"Material UI", body:"Material UI는 구글의 디자인시스템인 Material Desing을 React환경에서 완벽하게 구현할 수 있도록 돕는 UI 라이브러리 입니다."}    
+    {id:2, title:"Material UI", body:"Material UI는 구글의 디자인시스템인 Material Desing을 React환경에서 완벽하게 구현할 수 있도록 돕는 UI 라이브러리 입니다."},
+    {id:3, title:"framer-motion", body:"framer-motion은 애니메이션 라이브러리 입니다."}        
   ]
   let content=null;
 
   if (mode==='WELCOME') {
-     content = <Article title="WELCOME" body="Material UI를 이용한 React 프로그램 실습"></Article>
+     content = <Article id="1" title="WELCOME" body="Material UI를 이용한 React 프로그램 실습"></Article>
   }
   else if(mode==='READ') {
     let title,body = null;
@@ -161,7 +189,7 @@ function App() {
         body = topics[i].body;
       }
     }
-    content = <Article title={title} body={body}></Article>
+    content = <Article id={id} title={title} body={body}></Article>
   }
 
   return (
