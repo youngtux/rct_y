@@ -1,5 +1,5 @@
 
-import { motion, Variants } from "framer-motion"
+import { motion } from "framer-motion"
 import PathDrawing from "./Framer_PathDrawing"
 
 export default function Motions() {
