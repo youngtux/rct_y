@@ -18,6 +18,9 @@ import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 //Material UI
 export default function Materials() {
@@ -25,8 +28,10 @@ export default function Materials() {
     <div>
       <h4> Button and ButtonGroup </h4>
       <Buttons></Buttons> 
+      <h4> BasicTabs </h4>
+      <BasicTabs></BasicTabs> 
       <h4> Grid </h4>
-      <Grid container style={{border: '2px solid blue', padding: '25px'}}>
+      <Grid container style={{border: '2px solid blue', padding: '15px'}}>
         <Grid item size={{xs:12, md:6, lg:3}}>
           <h4> CheckboxLabels </h4>
           <CheckboxLabels></CheckboxLabels>
@@ -151,6 +156,66 @@ function HoverRating() {
       {value !== null && (
         <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
       )}
+    </Box>
+  );
+}
+
+// BasicTabs
+
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
+}
+
+CustomTabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+function BasicTabs() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Item One" {...a11yProps(0)} />
+          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Item Three" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        Item One
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        Item Two
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        Item Three
+      </CustomTabPanel>
     </Box>
   );
 }
