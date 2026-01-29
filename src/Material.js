@@ -25,17 +25,17 @@ export default function Materials() {
     <div>
       <h4> Button and ButtonGroup </h4>
       <Buttons></Buttons> 
-      <h4> Container, Grid </h4>
+      <h4> Grid </h4>
       <Grid container style={{border: '2px solid blue', padding: '25px'}}>
-        <Grid item size={4}>
+        <Grid item size={{xs:12, md:6, lg:3}}>
           <h4> CheckboxLabels </h4>
           <CheckboxLabels></CheckboxLabels>
         </Grid>
-         <Grid item size={4}>     
+         <Grid item size={{xs:12, md:6, lg:3}}>     
           <h4> HoverRating </h4>         
           <HoverRating></HoverRating>
         </Grid>        
-        <Grid item size={4}>     
+        <Grid item size={{xs:12, md:6, lg:3}}>     
           <h4> BasicSelect </h4> 
           <BasicSelect></BasicSelect>
         </Grid>         
