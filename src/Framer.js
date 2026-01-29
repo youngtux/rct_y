@@ -32,7 +32,7 @@ function Gestures() {
         <motion.div
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.8 }}
-            style={box1}
+            style={box2}
         />
     )
 }
@@ -41,7 +41,7 @@ function Gestures() {
  * ==============   Styles   ================
  */
 
-const box = {
+const box2 = {
     width: 100,
     height: 100,
     backgroundColor: "#9911ff",
