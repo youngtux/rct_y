@@ -4,7 +4,7 @@ import Materials from './Material';
 import Motions from './Framer';
 import Nav from './Nav';
 import Container from '@mui/material/Container';
-import PathDrawing from "./Framer_PathDrawing"
+import PathMorphing from "./PathMorphing"
 
 function Header(props) {
  return(
@@ -21,7 +21,7 @@ function Header(props) {
 
 function Article(props) {
   let content=null;
-  if (props.id===1) { content = <PathDrawing></PathDrawing>};
+  if (props.id===1) { content = <PathMorphing></PathMorphing>};
   if (props.id===2) { content = <Materials></Materials>};
   if (props.id===3) { content = <Motions></Motions>};
   

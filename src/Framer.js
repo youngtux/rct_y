@@ -1,6 +1,7 @@
 
 import { motion } from "framer-motion"
-import PathMorphing from "./PathMorphing"
+import PathDrawing from "./Framer_PathDrawing"
+
 
 export default function Motions() {
     return (
@@ -9,8 +10,8 @@ export default function Motions() {
         <Gestures></Gestures>    
         <h4> Darg Morion - 움직여 보세요. </h4>
         <Drag></Drag> 
-        <h4> PathMorphing </h4>
-        <PathMorphing>/</PathMorphing>    
+        <h4> PathDrawing </h4>
+        <PathDrawing>/</PathDrawing>>    
       </dev>
     )
 }
