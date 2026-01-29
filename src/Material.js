@@ -22,13 +22,17 @@ import Grid from '@mui/material/Grid';
 export default function Materials() {
   return (
     <div>
+      <h4> Button and ButtonGroup </h4>
       <Buttons></Buttons>
       <br/><br/>
+      <h4> Grid, Container </h4>
       <Grid container>
         <Grid item size={6}>
+          <h4> CheckboxLabels </h4>
           <CheckboxLabels></CheckboxLabels>
         </Grid>
-        <Grid item size={6}>      
+        <Grid item size={6}>     
+          <h4> BasicSelect </h4> 
           <BasicSelect></BasicSelect>
         </Grid>  
       </Grid>
