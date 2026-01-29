@@ -16,25 +16,29 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Grid from '@mui/material/Grid';
-
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
 
 //Material UI
 export default function Materials() {
   return (
     <div>
       <h4> Button and ButtonGroup </h4>
-      <Buttons></Buttons>
-      <br/><br/>
-      <h4> Grid, Container </h4>
-      <Grid container>
-        <Grid item size={6}>
+      <Buttons></Buttons> 
+      <h4> Container, Grid </h4>
+      <Grid container style={{border: '2px solid blue', padding: '25px'}}>
+        <Grid item size={4}>
           <h4> CheckboxLabels </h4>
           <CheckboxLabels></CheckboxLabels>
         </Grid>
-        <Grid item size={6}>     
+         <Grid item size={4}>     
+          <h4> HoverRating </h4>         
+          <HoverRating></HoverRating>
+        </Grid>        
+        <Grid item size={4}>     
           <h4> BasicSelect </h4> 
           <BasicSelect></BasicSelect>
-        </Grid>  
+        </Grid>         
       </Grid>
     </div>
   )
@@ -102,6 +106,51 @@ function BasicSelect() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
+    </Box>
+  );
+}
+
+// HoverRating
+
+const labels = {
+  0.5: 'Useless',
+  1: 'Useless+',
+  1.5: 'Poor',
+  2: 'Poor+',
+  2.5: 'Ok',
+  3: 'Ok+',
+  3.5: 'Good',
+  4: 'Good+',
+  4.5: 'Excellent',
+  5: 'Excellent+',
+};
+
+function getLabelText(value) {
+  return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+}
+
+function HoverRating() {
+  const [value, setValue] = React.useState(2);
+  const [hover, setHover] = React.useState(-1);
+
+  return (
+    <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
+      <Rating
+        name="hover-feedback"
+        value={value}
+        precision={0.5}
+        getLabelText={getLabelText}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }}
+        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+      />
+      {value !== null && (
+        <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+      )}
     </Box>
   );
 }
